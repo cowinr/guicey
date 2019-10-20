@@ -1,39 +1,40 @@
-# FreshGuice
+# Guicey
 A hands on practice package for Google Guice. 
 
-This maven project implements a com.moostey.guice.BillingService which charges a com.moostey.guice.PizzaOrder using a com.moostey.guice.CreditCard and generated a com.moostey.guice.Receipt.
+This maven project implements a BillingService which charges a PizzaOrder using a CreditCard and generated a Receipt.
 See classes in package for more details.
 
 ### Interfaces
-* com.moostey.guice.BillingService - charges an order using a credit card
-* com.moostey.guice.CreditCardProcessor - debits some amount from credit card
-* com.moostey.guice.TransactionLog - logs results
+* BillingService - charges an order using a credit card
+* CreditCardProcessor - debits some amount from credit card
+* TransactionLog - logs results
+
 ### Classes
 **src**
-* com.moostey.guice.CreditCard - entity representing a Credit Card
-* com.moostey.guice.PizzaOrder - entity representing a Pizza order
-* com.moostey.guice.Receipt - entity representing a receipt
-* com.moostey.guice.RealBillingService implements com.moostey.guice.BillingService
-* com.moostey.guice.PaypalCreditCardProcessor implements com.moostey.guice.CreditCardProcessor
-* com.moostey.guice.BankCreditCardProcessor implements com.moostey.guice.CreditCardProcessor
-* com.moostey.guice.InMemoryTransactionLog implements com.moostey.guice.TransactionLog
-* com.moostey.guice.GuiceTest - Main class which uses com.moostey.guice.BillingService
-* com.moostey.guice.BillingModule - All Guice bindings go here
+* CreditCard - entity representing a Credit Card
+* PizzaOrder - entity representing a Pizza order
+* Receipt - entity representing a receipt
+* RealBillingService implements BillingService
+* PaypalCreditCardProcessor implements CreditCardProcessor
+* BankCreditCardProcessor implements CreditCardProcessor
+* InMemoryTransactionLog implements TransactionLog
+* GuiceTest - Main class which uses BillingService
+* BillingModule - All Guice bindings go here
 
-**tst** 
+**test** 
 * GuiceInjectionTest : Unit tests to check binding constraints
 
 ### Task
-The task here is to create Guice Bindings in the com.moostey.guice.BillingModule such that the following constraints are satisfied: 
+The task here is to create Guice Bindings in the BillingModule such that the following constraints are satisfied: 
 
-1. All implementations of com.moostey.guice.BillingService should be bound to com.moostey.guice.RealBillingService.
-2. com.moostey.guice.CreditCardProcessor interface annotated with @Paypal should be bound to com.moostey.guice.PaypalCreditCardProcessor class.
-3. com.moostey.guice.CreditCardProcessor interface named with string “Bank” should be bound to com.moostey.guice.BankCreditCardProcessor class.
-4. com.moostey.guice.BillingService instances returned by injector should have instance of com.moostey.guice.BankCreditCardProcessor as their dependency.
-5. All implementations of com.moostey.guice.TransactionLog should be bound to com.moostey.guice.InMemoryTransactionLog.
+1. All implementations of BillingService should be bound to RealBillingService.
+2. CreditCardProcessor interface annotated with @Paypal should be bound to PaypalCreditCardProcessor class.
+3. CreditCardProcessor interface named with string “Bank” should be bound to BankCreditCardProcessor class.
+4. BillingService instances returned by injector should have instance of BankCreditCardProcessor as their dependency.
+5. All implementations of TransactionLog should be bound to InMemoryTransactionLog.
 
 All 5 unit tests in GuiceInjectionTests should pass if the above conditions are satisfied.
-You should also be able to run the main method in com.moostey.guice.GuiceTest. 
+You should also be able to run the main method in GuiceTest. 
  
 For now, [this](https://github.com/google/guice/wiki/GettingStarted) is the user guide to follow. 
 
